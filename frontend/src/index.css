@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   ANARA Technologies — Design System tokens (Tailwind CSS v4)
+   Source of truth: files/ANARA_Website_PRD_v1.md (section 12 — Visual Identity)
+
+   Visual direction: primarily light with strategic dark sections, magenta as
+   the distinctive accent. Rounded elements, strong typography, clear hierarchy.
+   ========================================================================== */
+
+@theme {
+  /* --- Brand magenta scale ------------------------------------------------
+     The three official ANARA brand colors map to this scale:
+       500 = Bright Magenta  #EB347C
+       700 = ANARA Magenta   #B0004B  (primary action color)
+       900 = Deep Magenta    #670022
+     The surrounding steps are tints/shades that keep the scale coherent. */
+  --color-magenta-50: #fff1f6;
+  --color-magenta-100: #ffe0eb;
+  --color-magenta-200: #ffc2d8;
+  --color-magenta-300: #ff94b8;
+  --color-magenta-400: #f95e93;
+  --color-magenta-500: #eb347c;
+  --color-magenta-600: #d21264;
+  --color-magenta-700: #b0004b;
+  --color-magenta-800: #8a003a;
+  --color-magenta-900: #670022;
+  --color-magenta-950: #3f0014;
+
+  /* --- Semantic neutrals -------------------------------------------------- */
+  --color-ink: #18181b;
+  --color-ink-muted: #52525b;
+  --color-canvas: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-muted: #fafafa;
+  --color-line: #e4e4e7;
+
+  /* --- Typography ---------------------------------------------------------
+     One modern grotesque across the system; headings rely on heavier weights
+     and tighter tracking rather than a second family. */
+  --font-sans:
+    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-display:
+    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+
+  /* Display/title steps; body copy uses Tailwind's default text scale. */
+  --text-display: 3rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+  --text-title: 2rem;
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.01em;
+  --text-title--font-weight: 700;
+
+  /* --- Layout -------------------------------------------------------------
+     Spacing follows Tailwind's 0.25rem base step. Shared content width: */
+  --spacing: 0.25rem;
+  --container-content: 75rem;
+
+  /* --- Radii -------------------------------------------------------------- */
+  --radius-card: 1rem;
+  --radius-field: 0.75rem;
+}
+
+/* --- Brand gradient (PRD 12): #670022 -> #B0004B -> #EB347C --------------- */
+@utility bg-anara-gradient {
+  background-image: linear-gradient(
+    135deg,
+    #670022 0%,
+    #b0004b 55%,
+    #eb347c 100%
+  );
+}
+
+/* Deep variant (deep -> ANARA magenta only) for surfaces that carry white
+   text: white keeps >= 7:1 contrast across the whole range. */
+@utility bg-anara-gradient-deep {
+  background-image: linear-gradient(135deg, #670022 0%, #b0004b 100%);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-magenta-100);
+    color: var(--color-magenta-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-magenta-600);
+    outline-offset: 2px;
+  }
+}
