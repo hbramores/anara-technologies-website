@@ -286,6 +286,30 @@ A module is DONE only when:
 
 The website V1 is DONE only after the final production verification module passes.
 
+## Worker Orchestration
+
+The main agent may delegate well-scoped, independent work to real Kilo Code worker processes. Worker orchestration is project infrastructure, separate from the website's one-module-at-a-time build rule, which still governs all website work. Detailed machine-specific commands live in `.kilo/orchestration/ORCHESTRATION.md`.
+
+**When delegation is appropriate.** Delegate only when a task is independent, bounded, and worth the startup and coordination cost. Handle small, tightly coupled, or ambiguous work directly.
+
+**Main-agent authority.** The main agent owns all workflow, integration, conflict-resolution, and acceptance decisions. Workers only execute one bounded assignment and report back. Workers must not dispatch other workers, run shell commands, or decide scope.
+
+**Verified configuration.** Workers run through Kilo Code **7.8.8** with model **`nvidia/deepseek-ai/deepseek-v4.1-flash`** (Nvidia provider) and reasoning **`--variant max`**. Do not substitute another model silently.
+
+**Independent worker sessions.** Every worker is its own `kilo run` OS process with its own session, logs, and generated agent. Workers are short-lived and resumable by session; no idle process is kept alive just to look persistent.
+
+**File ownership and concurrency.** Each assignment declares owned paths; overlapping assignments are rejected before execution. Owned paths may not contain glob metacharacters, must be inside the assigned sandbox or the worker's own record directory, and must not pass through a junction/symlink. Write access is also enforced by a generated agent whose default is `deny` with narrow `allow` entries (verified: in-scope writes succeed, out-of-scope writes are hard-denied even with `--auto`). Reads are scoped to deny secret-like files, and every side-effecting tool a worker must not use is explicitly denied. Concurrency is capped at two workers by default. Shared or conflicting resources are serialized; app code, dependencies, database/migration, environment, and deployment files must not be assigned. Only the main agent may change them, and only with explicit user approval.
+
+**Run identity and history.** Every execution receives a unique run ID and its own run directory. Reports are run-scoped and must carry the matching `workerId` and `runId`; reports from other runs are ignored. Previous runs are preserved as history.
+
+**Required structured reports.** Each worker must write a JSON report (`workerId, runId, assignment, status, accomplished, filesCreatedOrModified, findings, checksPerformed, errorsWarningsBlockers, remainingWork, considersComplete`). The schema is validated for required fields, non-empty strings, array/boolean types, and matching worker/run IDs. A missing or malformed report is treated as a failure. A worker's completion claim is not acceptance.
+
+**Review and follow-up.** The main agent inspects each worker's changes and verifies the acceptance criteria before accepting. Ownership stays active through review, follow-up, and `FAILED`, and is released only when a worker reaches `TERMINATED`. Follow-ups resume the same conversation where supported.
+
+**Termination and cleanup.** Termination is two-phase: a graceful stop request and cooperative wait, then a bounded forced kill in which every process is killed only after its recorded PID **and** start time are verified. A process whose identity cannot be verified is never killed by PID alone; that blocks termination and produces a recovery warning. `TERMINATED` is set only when no recorded owned processes remain, the generated agent is removed, and ownership is released; otherwise the worker stays `TERMINATING` for `gc`/`verify`. Never terminate unrelated processes.
+
+**Capability limitations and fallback.** Headless workers require `--auto` to edit at all, which is safe only with the deny-scoped generated agent. There is no per-worker terminal UI; isolation is logical (ownership plus scoped agent), not a separate worktree. Windows "graceful" shutdown is a bounded cooperative wait, not SIGTERM. Process-tree containment is snapshot-based: a process spawned after the snapshot or reparented away may survive and must be detected by review/`verify`. If stronger filesystem isolation is required, use `kilo worktree`; if structured permissions cannot be enforced, do not claim enforcement - fall back to explicit review of the diff.
+
 ## 18. Primary Principle
 
 Build ANARA carefully, one verified module at a time.

@@ -1,0 +1,18 @@
+# Kilo worker orchestration runtime artifacts (never commit live state or logs)
+.kilo/orchestration/registry.json
+.kilo/orchestration/registry.json.bak
+.kilo/orchestration/registry.json.tmp
+.kilo/orchestration/.registry.lock
+.kilo/orchestration/.registry.lock.owner
+.kilo/orchestration/workers/**
+!.kilo/orchestration/workers/.gitkeep
+.kilo/orchestration/tests/sandbox/**
+!.kilo/orchestration/tests/sandbox/.gitkeep
+.kilo/agent/workers/**
+!.kilo/agent/workers/.gitkeep
+!.kilo/agent/workers/base-readonly.md
+
+# Environment files (AGENTS.md section 7: keep .env ignored, keep .env.example)
+.env
+.env.*
+!.env.example
