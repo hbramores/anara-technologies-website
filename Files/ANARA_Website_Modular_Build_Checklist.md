@@ -552,6 +552,8 @@ Not tested here: Firefox and Safari are not installed in this environment (Safar
 
 - [x] Configure production environment variables.
 - [x] Verify production build succeeds.
+
+Local evidence: the built site is served with `BROWSER_TARGET=preview node tests/browser/verify.mjs` and passes the same 84 checks as the dev server.
 - [x] Remove avoidable console errors/warnings.
 - [x] Check all internal links.
 - [x] Check external/social links.

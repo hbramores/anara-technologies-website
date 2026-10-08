@@ -62,10 +62,13 @@ try {
   while (cdpPort === appPort) cdpPort = freePort()
   const base = `http://127.0.0.1:${appPort}`
 
+  const previewMode = process.env.BROWSER_TARGET === 'preview'
+  console.log(`Target: ${previewMode ? 'production build (vite preview)' : 'dev server'}`)
   vite = spawn(
     process.execPath,
     [
       'node_modules/vite/bin/vite.js',
+      ...(previewMode ? ['preview'] : []),
       '--port',
       String(appPort),
       '--strictPort',
