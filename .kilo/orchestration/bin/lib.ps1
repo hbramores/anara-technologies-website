@@ -238,7 +238,7 @@ function Test-PathProtected {
   foreach ($g in $Config.protectedGlobs) {
     if (Test-GlobMatch -RelPath $rel -Glob $g) { return $true }
     # Also protect the bare directory/node named by the glob's literal prefix,
-    # so e.g. "frontend/**" also protects the "frontend" node itself.
+    # so e.g. "src/**" also protects the "src" node itself.
     $prefix = Get-GlobLiteralPrefix $g
     if ($prefix) {
       if ($rel.Equals($prefix, [System.StringComparison]::OrdinalIgnoreCase)) { return $true }
