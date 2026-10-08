@@ -606,7 +606,9 @@ Local evidence: the built site is served with `BROWSER_TARGET=preview node tests
 - No critical production errors remain.
 - No out-of-scope feature is required for launch.
 
-**ANARA WEBSITE V1 COMPLETE ✓**
+**ANARA WEBSITE V1 — CODE AND LOCAL VERIFICATION COMPLETE; PRODUCTION LAUNCH CHECKS PENDING (H02/H03).**
+
+Not production-ready yet: real email delivery, live reCAPTCHA, live analytics receipt, Firefox/Safari, domain/HTTPS, deployment, and real inquiry submissions remain unchecked and require accounts, credentials, a domain, or hosting.
 
 ---
 
