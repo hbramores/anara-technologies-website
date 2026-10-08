@@ -15,7 +15,7 @@ import {
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const repo = path.resolve(here, '../..')
-const frontend = path.join(repo, 'frontend')
+const frontend = repo
 
 const results = []
 function record(name, ok, detail = '') {

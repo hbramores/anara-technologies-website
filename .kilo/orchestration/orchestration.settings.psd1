@@ -17,8 +17,13 @@
   kiloNodeScript          = ''
   protectedGlobs          = @(
     '.git/**',
-    'frontend/**',
-    'backend/**',
+    'src/**',
+    'public/**',
+    'index.html',
+    'vite.config.js',
+    '.oxlintrc.json',
+    'test/**',
+    'tests/**',
     'Files/**',
     'files/**',
     'AGENTS.md',

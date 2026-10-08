@@ -377,7 +377,7 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Update `.env.example` with safe placeholders.
 - [x] Add server-side validation.
 - [x] Add error handling.
-- [x] Add credential-free integration verification (`backend/test/`, run `npm test` in `backend/`): both forms reach the notification path via the `console` transport, validation rejects bad input, and no notification is sent for rejected input.
+- [x] Add credential-free integration verification (in the separate `anara-technologies-backend` repository: `test/`, run `npm test`): both forms reach the notification path via the `console` transport, validation rejects bad input, and no notification is sent for rejected input.
 - [ ] Verify end-to-end delivery to ANARA's real inbox (requires production SMTP credentials — pending).
 
 **STOP — Report E04 and wait for approval.**
@@ -391,7 +391,7 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Verify CAPTCHA server-side (logic verified with mocked reCAPTCHA responses; live reCAPTCHA keys pending).
 - [x] Add appropriate basic rate limiting.
 - [x] Add spam/abuse protection.
-- [x] Test invalid CAPTCHA (missing token and reCAPTCHA-failure rejection covered by `backend/test/captcha.test.mjs`; live reCAPTCHA keys pending).
+- [x] Test invalid CAPTCHA (missing token and reCAPTCHA-failure rejection covered by `test/captcha.test.mjs` in the backend repository; live reCAPTCHA keys pending).
 - [x] Test rejected/abusive submissions.
 - [x] Test legitimate submissions.
 
@@ -436,7 +436,7 @@ Pending: `public/sitemap.xml` and `public/robots.txt` still contain the placehol
 - [x] Track contact submissions.
 - [x] Track PLANTWAIS page visits.
 - [x] Avoid collecting unnecessary sensitive form data in analytics.
-- [x] Verify events locally: instrumentation emits the documented events with a stubbed gtag (`frontend/test/analytics.test.mjs`, run `npm test` in `frontend/`).
+- [x] Verify events locally: instrumentation emits the documented events with a stubbed gtag (`test/analytics.test.mjs`, run `npm test` at the repository root).
 - [ ] Verify live analytics receipt in production (requires a GA measurement ID — pending).
 
 **STOP — Report F02 and wait for approval.**

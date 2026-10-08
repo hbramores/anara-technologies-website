@@ -225,7 +225,7 @@ Use actual product/interface visuals where possible.
 
 ### Logo
 
-The official ANARA logo asset is available at `frontend/src/assets/anara-logo.png`.
+The official ANARA logo asset is available at `src/assets/anara-logo.png`.
 
 - Use it as the site logo in the header and footer.
 - Import it through the Vite asset pipeline and preserve its proportions.

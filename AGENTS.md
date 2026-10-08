@@ -22,16 +22,24 @@ If requirements conflict, do not silently choose. Report the conflict and ask th
 Treat the project root as:
 
 ```text
-Anara Website/
+anara-technologies-website/   # frontend repository root
 ├── AGENTS.md
-├── files/
+├── Files/
 │   ├── ANARA_Website_PRD_v1.md
 │   └── ANARA_Website_Modular_Build_Checklist.md
-├── frontend/          # application frontend when created
-└── backend/           # create only if/when a backend is actually required
+├── src/                # React application source
+├── public/             # static assets
+├── test/               # frontend unit tests
+├── tests/              # headless browser checks
+├── .kilo/              # worker orchestration tooling
+├── index.html
+├── package.json
+└── vite.config.js
 ```
 
-The `files/` directory contains project reference documents. Do not treat it as application source code.
+The `Files/` directory contains project reference documents. Do not treat it as application source code.
+
+The form backend is a separate repository (`anara-technologies-backend`); this repository contains the frontend only.
 
 `AGENTS.md` belongs in the project root so its instructions apply to the entire ANARA Website project.
 
@@ -80,7 +88,7 @@ Unless the user changes them, preserve:
 - Overall visual direction: primarily light, strategic dark sections, magenta accents
 - Tone: professional, approachable, modern, simple, clear, grounded, forward-looking
 - Audience language: plain language understandable to Filipino MSMEs and non-technical business owners
-- Official logo asset: `frontend/src/assets/anara-logo.png` (import it; never stretch, distort, recolor, redraw, regenerate, or modify it; on dark surfaces adapt the surrounding presentation instead of the logo)
+- Official logo asset: `src/assets/anara-logo.png` (import it; never stretch, distort, recolor, redraw, regenerate, or modify it; on dark surfaces adapt the surrounding presentation instead of the logo)
 
 Do not replace approved copy with generic tech-company language unless explicitly asked.
 
