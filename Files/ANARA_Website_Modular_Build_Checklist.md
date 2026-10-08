@@ -422,6 +422,8 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Verify heading hierarchy.
 - [x] Verify search-friendly URLs.
 
+Pending: `public/sitemap.xml` and `public/robots.txt` still contain the placeholder `REPLACE-WITH-YOUR-DOMAIN` until the production domain is chosen.
+
 **STOP — Report F01 and wait for approval.**
 
 ---
@@ -452,6 +454,8 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Verify semantic landmarks.
 - [x] Perform basic screen-reader-oriented review.
 
+Local evidence: `tests/browser/verify.mjs` asserts, on every V1 route, a single `<main>` landmark, one `h1`, a skip link, `lang` and viewport meta, alt text on every image, and a label for every form control. Automated checks do not replace a manual screen-reader pass.
+
 ### Phase F Acceptance Criteria
 
 - Core pages are keyboard usable.
@@ -481,6 +485,8 @@ Test:
 - [x] Long text/content wrapping
 - [x] No unintended horizontal scrolling
 
+Local evidence: `tests/browser/verify.mjs` loads every V1 route in headless Chrome and Edge at 375 / 768 / 1366 px and asserts no horizontal overflow plus page structure (84 checks per browser).
+
 **STOP — Report G01 and wait for approval.**
 
 ---
@@ -489,12 +495,14 @@ Test:
 
 Test current versions where available:
 
-- [x] Chrome
-- [x] Edge
+- [x] Chrome (verified locally via `tests/browser/verify.mjs`)
+- [x] Edge (Chromium; verified locally via `tests/browser/verify.mjs`)
 - [ ] Firefox
 - [ ] Safari
 
 Document anything that cannot be tested in the current environment.
+
+Not tested here: Firefox and Safari are not installed in this environment (Safari is macOS-only). Sites are standard React + Tailwind with no browser-specific APIs, but this is unverified.
 
 **STOP — Report G02 and wait for approval.**
 
