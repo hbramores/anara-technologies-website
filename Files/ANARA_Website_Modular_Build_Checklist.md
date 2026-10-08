@@ -377,7 +377,8 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Update `.env.example` with safe placeholders.
 - [x] Add server-side validation.
 - [x] Add error handling.
-- [ ] Verify end-to-end delivery.
+- [x] Add credential-free integration verification (`backend/test/`, run `npm test` in `backend/`): both forms reach the notification path via the `console` transport, validation rejects bad input, and no notification is sent for rejected input.
+- [ ] Verify end-to-end delivery to ANARA's real inbox (requires production SMTP credentials — pending).
 
 **STOP — Report E04 and wait for approval.**
 
@@ -387,10 +388,10 @@ A module is **not complete simply because code was written**. It must be verifie
 
 - [x] Integrate CAPTCHA on Contact form.
 - [x] Integrate CAPTCHA on Start a Project form.
-- [ ] Verify CAPTCHA server-side.
+- [x] Verify CAPTCHA server-side (logic verified with mocked reCAPTCHA responses; live reCAPTCHA keys pending).
 - [x] Add appropriate basic rate limiting.
 - [x] Add spam/abuse protection.
-- [ ] Test invalid CAPTCHA.
+- [x] Test invalid CAPTCHA (missing token and reCAPTCHA-failure rejection covered by `backend/test/captcha.test.mjs`; live reCAPTCHA keys pending).
 - [x] Test rejected/abusive submissions.
 - [x] Test legitimate submissions.
 
@@ -518,7 +519,7 @@ Document anything that cannot be tested in the current environment.
 - [x] Confirm no secrets are exposed.
 - [x] Confirm `.env` is ignored.
 - [x] Verify server-side input validation.
-- [ ] Verify CAPTCHA.
+- [ ] Verify CAPTCHA. (Server-side CAPTCHA *logic* is tested with mocked responses under E05; live reCAPTCHA verification with real keys is still pending.)
 - [x] Verify rate limiting.
 - [x] Verify production error handling.
 - [x] Confirm forms cannot be easily abused.
