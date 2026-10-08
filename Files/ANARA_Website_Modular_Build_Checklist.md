@@ -434,7 +434,8 @@ A module is **not complete simply because code was written**. It must be verifie
 - [x] Track contact submissions.
 - [x] Track PLANTWAIS page visits.
 - [x] Avoid collecting unnecessary sensitive form data in analytics.
-- [ ] Verify events.
+- [x] Verify events locally: instrumentation emits the documented events with a stubbed gtag (`frontend/test/analytics.test.mjs`, run `npm test` in `frontend/`).
+- [ ] Verify live analytics receipt in production (requires a GA measurement ID — pending).
 
 **STOP — Report F02 and wait for approval.**
 

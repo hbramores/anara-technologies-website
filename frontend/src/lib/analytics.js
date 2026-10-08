@@ -1,4 +1,5 @@
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
+const env = import.meta.env ?? {}
+const GA_ID = env.VITE_GA_MEASUREMENT_ID
 
 let initialized = false
 
